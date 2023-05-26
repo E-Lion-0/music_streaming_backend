@@ -1,0 +1,19 @@
+<!-- music/song_list.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Song List</title>
+</head>
+<body>
+    <h1>Song List</h1>
+
+    <ul>
+        {% for song in songs %}
+        <li>
+            <a href="{% url 'song_detail' song.id %}">{{ song.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
