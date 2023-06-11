@@ -1,0 +1,25 @@
+<!-- create_album.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Streaming Service - Create Album</title>
+</head>
+<body>
+    <h1>Create Album</h1>
+
+    <form method="POST" action="{% url 'create_album' %}">
+        {% csrf_token %}
+        <!-- Include album form fields here -->
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title">
+
+        <label for="artist">Artist:</label>
+        <input type="text" name="artist" id="artist">
+
+        <!-- Include other album form fields -->
+
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

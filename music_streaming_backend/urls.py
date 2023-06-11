@@ -14,19 +14,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.auth.decorators import login_required
 from django.urls import path
-
+from django.conf import settings
 from music import views
-from music.views import add_song
-
-from admin.views import login_view, signup
 
 urlpatterns = [
     path('home/', views.home, name='home'),
     path('admin/', admin.site.urls),
-    path('add-song/', login_required(add_song), name='add_song'),
-    path('', login_view, name='login'),
-    path('signup/', signup, name='signup'),
-]
+    path('', views.login_view, name='login'),
+    path('signup/', views.signup, name='signup'),
+    path('create_playlist/', views.create_playlist, name='create_playlist'),
+    path('user/<str:username>/', views.user_profile, name='user_profile'),
+    path('search/', views.search, name='search'),
+    path('artist/<int:artist_id>/', views.artist_detail, name='artist_detail'),
+    path('album/<int:album_id>/', views.album_detail, name='album_detail'),
+    path('playlist/<int:playlist_id>/', views.playlist_detail, name='playlist_detail'),
+    path('toggle_like/<int:song_id>/', views.toggle_like, name='toggle_like'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL,
+                                                                           document_root=settings.STATIC_ROOT)

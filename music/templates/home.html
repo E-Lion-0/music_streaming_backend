@@ -1,34 +1,103 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+
+<html lang="en">
 <head>
-    <title>Music Streaming Service</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <title>MSS App</title>
 </head>
 <body>
-    <h1>Welcome to the Music Streaming Service</h1>
+  <header>
+    <h1>MSS App</h1>
+    <nav>
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'user_profile' username=user.username %}">Profile</a></li>
+        <li><a href="{% url 'login' %}">Log Out</a></li>
+        <form action="{% url 'search' %}" method="GET" class="search-form">
+          <input type="text" name="query" placeholder="Search songs, albums, or artists">
+          <button type="submit">Search</button>
+        </form>
+        <li><a class="nav-link" href="{% url 'create_playlist' %}">Create Playlist</a></li>
 
-    <form method="POST" action="{% url 'add_song' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Add Song</button>
-    </form>
 
+      </ul>
+    </nav>
+  </header>
 
-    <h2>Liked Songs</h2>
-    <ul>
-        {% for song in liked_songs %}
-            <li>{{ song.title }}</li>
-        {% empty %}
+  <main>
+  {% block content %}
+    <section class="featured">
+      <h2>My Playlists</h2>
+      <div class="playlist">
+        <img src="playlist-image.jpg" alt="Featured Playlist">
+        <h3>Playlist Name</h3>
+        <p>Curated by {{ user.username }}</p>
+        <button class="btn-play">Play</button>
+      </div>
+    </section>
+
+    <section class="liked">
+      <h2>Liked Songs</h2>
+
+          {% for song in liked_songs %}
+              <div class="song">
+                  <img src={{ song.album.cover_image.url }} >
+                  <h3>{{ song.title }} - {{ song.album }}</h3>
+                  <p>{{song.artist }}</p>
+                  <button class="btn-add">Add to Library</button>
+                  <button class="btn-play">Play</button>
+              </div>
+          {% empty %}
             <li>No liked songs found.</li>
-        {% endfor %}
-    </ul>
+          {% endfor %}
 
-    <h2>Liked Artists</h2>
-    <ul>
-        {% for artist in liked_artists %}
-            <li>{{ artist.name }}</li>
-        {% empty %}
-            <li>No liked artists found.</li>
-        {% endfor %}
-    </ul>
+
+    <section class="recommendation">
+        <h2>User Recommendations</h2>
+
+              {% for recommendation in recommendations %}
+                <li>
+                  <h3>{{ recommendation.song.title }}</h3>
+                  <p>Recommended by: {{ recommendation.user.username }}</p>
+                  <p>Reason: {{ recommendation.reason }}</p>
+                </li>
+              {% empty %}
+                <li>No user recommendations found.</li>
+              {% endfor %}
+
+    </section>
+
+    </section>
+    <section class="popular">
+      <h2>Popular Albums</h2>
+          {% for artist in artists %}
+              {% for album in albums %}
+                  {% if album.artist == artist %}
+                  <div class="album">
+                    <img src={{ album.cover_image.url }} >
+                    <h3>{{ album.title }}</h3>
+                    <p>{{album.artist }}</p>
+                    <button class="btn-add">Add to Library</button>
+                    <button class="btn-play">Play</button>
+                  </div>
+                  {% endif %}
+              {% endfor %}
+          {% endfor %}
+
+    </section>
+  {% endblock %}
+  </main>
+
+  <footer>
+    <p>&copy; 2023 MSS App. All rights reserved.</p>
+  </footer>
 </body>
 </html>
+
+
+
+
+
