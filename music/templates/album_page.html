@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h2>{{ album.title }}</h2>
+  <img src="{{ album.cover_image.url }}" alt="{{ album.title }}">
+  <a>{{ album.release_date.year }}</a>
+  
+  <h3>Songs:</h3>
+  {% if album.song_set.all %}
+    <ul>
+      {% for song in album.song_set.all %}
+        <li>{{ song.title }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No songs available for this album.</p>
+  {% endif %}
+{% endblock %}

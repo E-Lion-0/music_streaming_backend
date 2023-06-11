@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h2>Playlist Detail</h2>
+  <h3>{{ playlist.name }}</h3>
+  <p>Description: {{ playlist.detail }}</p>
+  <p>Owner: {{ playlist.owner.username }}</p>
+  <h4>Songs:</h4>
+  <ul>
+    {% for song in playlist.songs.all %}
+      <li>{{ song.title }}</li>
+    {% empty %}
+      <li>No songs in this playlist.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

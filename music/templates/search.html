@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h2>Search Results</h2>
+  <h3>Songs</h3>
+  <ul>
+    {% for song in songs %}
+      <li><a href="#">{{ song.title }}</a></li>
+    {% empty %}
+      <li>No songs found.</li>
+    {% endfor %}
+  </ul>
+  <h3>Artists</h3>
+  <ul>
+    {% for artist in artists %}
+      <li><a href="{% url 'artist_detail' artist_id=artist.id %}">{{ artist.name }}</a></li>
+    {% empty %}
+      <li>No artists found.</li>
+    {% endfor %}
+  </ul>
+  <h3>Albums</h3>
+  <ul>
+    {% for album in albums %}
+      <li><a href="{% url 'album_detail' album_id=album.pk %}">{{ album.title }}</a></li>
+    {% empty %}
+      <li>No albums found.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

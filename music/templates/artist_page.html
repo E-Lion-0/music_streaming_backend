@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <div class="artist">
+      <h2>{{ artist.name }}</h2>
+
+      <img src="{{ artist.photo.url }}" alt="{{ artist.name }}">
+
+      <h3>Albums:</h3>
+      {% if artist.album_set.all %}
+        <ul>
+          {% for album in artist.album_set.all %}
+            <li>
+              <a href="{% url 'album_detail' album_id=album.pk %}">{{ album.title }}</a>
+              <a href="{% url 'album_detail' album_id=album.pk %}">
+                <img src="{{ album.cover_image.url }}" alt="{{ album.title }}">
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No albums available for this artist.</p>
+      {% endif %}
+  </div>
+{% endblock %}

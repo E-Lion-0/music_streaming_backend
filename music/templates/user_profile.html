@@ -1,0 +1,15 @@
+{% extends 'home.html' %}
+
+{% block content %}
+  <h2>User Profile</h2>
+  <h3>{{ user.username }}</h3>
+  <p>Email: {{ user.email }}</p>
+  <h4>Playlists:</h4>
+  <ul>
+    {% for playlist in user.playlist_set.all %}
+      <li><a href="{% url 'playlist_detail' playlist_id=playlist.pk %}">{{ playlist.name }}</a></li>
+    {% empty %}
+      <li>No playlists for this user.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Streaming Service - Album List</title>
+</head>
+<body>
+    <h1>Album List</h1>
+
+    <!-- Add a link/button to create a new album -->
+    <a href="{% url 'create_album' %}">Create New Album</a>
+
+    <ul>
+        {% for album in albums %}
+            <li>{{ album.title }}</li>
+        {% empty %}
+            <li>No albums found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,107 @@
+body, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+header {
+  background-color: #1DB954;
+  padding: 20px;
+  color: #fff;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+
+}
+
+nav ul li {
+  margin-right: 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+main {
+  padding: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.playlist, .song,.album ,.featured-playlist{
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: auto auto 1fr;
+  align-items: center;
+  gap: 10px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.playlist img, .song img , .album img{
+  width: 100%;
+  max-width: 80px;
+  height: auto;
+  grid-row: 1 / 4;
+}
+
+.playlist h3, .song h3 ,.album h3{
+  grid-column: 2 / 3;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.playlist p, .song p ,.album p{
+  grid-column: 2 / 3;
+  font-size: 14px;
+  color: #777;
+}
+
+.playlist button,
+.song button,
+.album button{
+  grid-column: 2 / 3;
+  justify-self: start;
+  padding: 8px 12px;
+  background-color: #1DB954;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+.artist{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.artist img{
+  max-height: 100%;
+  width: 200px;
+  object-fit: cover;
+  vertical-align: bottom;
+}
