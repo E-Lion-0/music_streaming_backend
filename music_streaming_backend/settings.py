@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
 
 ]
-CSRF_TRUSTED_ORIGINS = ['mss.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://mss.up.railway.app']
 
 
 MIDDLEWARE = [
