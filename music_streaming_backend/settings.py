@@ -31,7 +31,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     'mss.up.railway.app',
-    '127.0.0.1'
+    '127.0.0.1',
+    '0.0.0.0'
 ]
 
 
