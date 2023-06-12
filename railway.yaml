@@ -1,5 +1,0 @@
-services:
-  - name: web
-    port: 8000
-    env:
-      SECRET_KEY: "<your_secret_key>"
