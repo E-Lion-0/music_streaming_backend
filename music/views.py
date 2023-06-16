@@ -84,6 +84,7 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
+
             return redirect('login')
     else:
         form = SignUpForm()

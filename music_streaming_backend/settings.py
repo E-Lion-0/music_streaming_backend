@@ -52,6 +52,10 @@ INSTALLED_APPS = [
 
 
 ]
+
+AUTH_USER_MODEL = 'music_streaming_backend.CustomUser'
+
+
 CSRF_TRUSTED_ORIGINS = ['https://mss.up.railway.app']
 
 
@@ -146,4 +150,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 

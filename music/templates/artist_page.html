@@ -5,6 +5,8 @@
       <h2>{{ artist.name }}</h2>
 
       <img src="{{ artist.photo.url }}" alt="{{ artist.name }}">
+      <h3>Biography</h3>
+      <p>{{ artist.biography }}</p>
 
       <h3>Albums:</h3>
       {% if artist.album_set.all %}

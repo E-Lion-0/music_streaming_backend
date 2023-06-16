@@ -5,7 +5,7 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     # Custom fields and additional modifications
-    username = models.CharField(max_length=20)
+    username = models.CharField(max_length=20, unique=True)
     bio = models.TextField(blank=True)
     favorite_genre = models.CharField(max_length=100, blank=True)
 
